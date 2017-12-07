@@ -69,7 +69,7 @@ void checkBinFull(){
   if(irInitialised && irCheckFull()){
     delay(1000); //Wait for the bin's contents to settle and double check
     if(irCheckFull()){ //If the sensor is still reporting full after our second check, we can reasonably assume that the bin is full
-      Serial.println("GSM NOTIFY FULL");
+      Serial.println("GSM NOTIFY BIN FULL");
       String REQ_PICKUP = "REQUEST PICKUP: ";
       String msgSMS = REQ_PICKUP + ID_BIN;
       gsmSend(msgSMS,"SERVICE_PROVIDER");
@@ -91,10 +91,10 @@ void irInit(){
     int val = analogRead(irSensorPin);
     distanceInitArray[currentIteration] = val;    
     currentIteration = currentIteration + 1; 
+    Serial.print("initial value: ");
     Serial.println(val);
   }
   else{
-    Serial.println("not initialised");
     int totalInitVals = 0; 
     
     for(int i = 0; i<initIterations; i++){
@@ -167,6 +167,7 @@ void gsmSend(String message, String target){
 boolean fallCheck(){
   float xVal = myIMU.readFloatAccelX();
   if(xVal > 1.5f){
+    Serial.println("fallen!");
     return true;
   }
   else{
@@ -187,7 +188,7 @@ boolean checkIncorrectOrientation(){
   float xVal = myIMU.readFloatAccelX();
   
   if(xVal > -0.7f){ //If the device is not correctly oriented the FloatAccellY value will be greater than -0.7
-//    Serial.println("wrong orientation");
+    Serial.println("wrong orientation!");
     return true;
   }
   else{
