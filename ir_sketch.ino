@@ -187,11 +187,11 @@ boolean checkIncorrectOrientation(){
   float xVal = myIMU.readFloatAccelX();
   
   if(xVal > -0.7f){ //If the device is not correctly oriented the FloatAccellY value will be greater than -0.7
-    Serial.println("wrong orientation");
+//    Serial.println("wrong orientation");
     return true;
   }
   else{
-    Serial.println("correct orientation");
+//    Serial.println("correct orientation");
     sentIncorrectOrientationSMS = false; //Reset the sms after the orientation is corrected again
     return false;
   }
@@ -206,4 +206,3 @@ void accelerometerReadout(){
     Serial.print(" Z = ");
     Serial.println(myIMU.readFloatAccelZ(), 4);
 }
-
