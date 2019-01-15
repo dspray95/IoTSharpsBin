@@ -19,8 +19,8 @@ GSM gsmAccess;
 GSM_SMS sms;
 GSMScanner scan;
 
-const char numServiceProvider[] = "+447494801240"; //Service provider sms target. Currently set to a personal number for testing
-char numUser[] = "+447494801240"; //Mobile number for the service reciever. Currently set to a personal number for testing
+const char numServiceProvider[] = ""; //Service provider sms target. Currently set to a personal number for testing
+char numUser[] = ""; //Mobile number for the service reciever. Currently set to a personal number for testing
 boolean notConnected = true; //tracking GSM connection status
 boolean sentRequestNewSMS = false; //True after we have sent an SMS message to request a new bin 
 boolean sentIncorrectOrientationSMS = false; //True after we have sent an SMS message informing the user that the bin has been knocked over or dropped
